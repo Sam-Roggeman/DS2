@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> This is the current SpotiBook catalogue </h1>
+{% if songs|length > 0 %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+        </tr>
+    </thead>
+{% for song in songs %}
+    <tr>
+        <td>{{ song[0] }}</td>
+        <td>{{ song[1] }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}

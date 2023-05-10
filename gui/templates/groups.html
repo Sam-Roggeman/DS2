@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1> Create Group </h1>
+        <form class="needs-validation" action="/create_group" method="POST" enctype="multipart/form-data" novalidate>
+        <div class="form-group">
+            <label for="groupname">Group Name</label>
+            <input type="username" class="form-control" name="groupname" id="groupname" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Group</button>
+        </form>
+        {% if create_success == false %}
+        <div class="alert alert-danger " role="alert">
+            <strong>Group creation Failed!</strong> This group already exists!
+        </div>
+        {% elif create_success == true %}
+        <div class="alert alert-success " role="alert">
+            Group creation succesful!
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-6">
+        <h1> Add Friend to Group </h1>
+        <form class="needs-validation" action="/add_friend_to_group" method="POST" enctype="multipart/form-data" novalidate>
+        <div class="form-group">
+            <label for="groupname2">Group Name</label>
+            <input type="username" class="form-control" name="groupname" id="groupname2" required>
+        </div>
+        <div class="form-group">
+            <label for="friendname">Your Friend's Name</label>
+            <input type="username" class="form-control" name="friendname" id="friendname" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Friend to Group</button>
+        </form>
+        {% if add_success == false %}
+        <div class="alert alert-danger " role="alert">
+            <strong>Adding Friend to group failed!</strong> Either this user doesn't exist, you aren't friends or the group doesn't exist!
+        </div>
+        {% elif add_success == true %}
+        <div class="alert alert-success " role="alert">
+            Friend added succefully to group!
+        </div>
+        {% endif %}
+    </div>
+</div>
+{{ success }}
+{% endblock %}

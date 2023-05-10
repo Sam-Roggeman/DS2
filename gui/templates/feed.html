@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> Feed </h1>
+    <table class="table table-striped">
+    {% for feed_item in feed %}
+    <tr>
+        <td>
+            <div class="row">
+                <div class="col-6">
+                    <b style="font-size: 1.75rem;">{{ feed_item[1] }}</b>
+                </div>
+                <div class="col-6" style="text-align:right;">
+                    {{ feed_item[0] }}
+                </div>
+            </div>
+            <hr>
+            <h5>{{ feed_item[2] }}</h5>
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

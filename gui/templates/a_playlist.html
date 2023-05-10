@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1> Add Song To Playlist </h1>
+        <form class="needs-validation" action="/add_song_to/{{ playlist_id }}" method="POST" enctype="multipart/form-data" novalidate>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control" name="title" id="title" required>
+            <label for="artist">Artist</label>
+            <input class="form-control" name="artist" id="artist" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <h1> Share Playlist</h1>
+        <form class="needs-validation" action="/invite_user_to/{{ playlist_id }}" method="POST" enctype="multipart/form-data" novalidate>
+            <div class="form-group">
+                <label for="user">Username</label>
+                <input class="form-control" name="user" id="user" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Share</button>
+        </form>
+    </div>
+    <div class="col-6">
+        <h1>Current Songs</h1>
+        <table class="table">
+            <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td>'{{ song[0] }}' by {{ song[1] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

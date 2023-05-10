@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1> Create Playlist </h1>
+        <form class="needs-validation" action="/create_playlist" method="POST" enctype="multipart/form-data" novalidate>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="title" class="form-control" name="title" id="title" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Playlist</button>
+        </form>
+    </div>
+    <div class="col-6">
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <tr>
+                <th>My Playlists</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for playlist in my_playlists %}
+                <tr>
+                    <td><b><a href="/playlists/{{ playlist[0] }}">{{ playlist[1] }}</a></b></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <tr>
+                <th>Playlists shared with me</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for playlist in shared_with_me %}
+                <tr>
+                    <td><b><a href="/playlists/{{ playlist[0] }}">{{ playlist[1] }}</a></b></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

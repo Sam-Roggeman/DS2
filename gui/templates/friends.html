@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h1> Add Friend </h1>
+        <form class="needs-validation" action="/add_friend" method="POST" enctype="multipart/form-data" novalidate>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="username" class="form-control" name="username" id="username" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Friend</button>
+        </form>
+        {% if success == false %}
+        <div class="alert alert-danger " role="alert">
+            <strong>Friend request Failed!</strong> This user doesn't exist or you are already friends!
+        </div>
+        {% elif success == true %}
+        <div class="alert alert-success " role="alert">
+            Friend request succesful!
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-6">
+        <table class="table table-striped">
+            <thead class="thead-light">
+            <tr>
+                <th>My Friends</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if friend_list|length != 0 %}
+            {% for friend in friend_list %}
+                <tr>
+                <td><b>{{ friend }}</b></td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <tr>
+                <td>Nobody here :(</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
