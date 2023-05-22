@@ -30,14 +30,14 @@ def all_songs(limit=1000):
 def add_song(title, artist):
     if not song_exists(title, artist):
         cur = conn.cursor()
-        cur.execute("INSERT INTO songs (title, artist) VALUES (%s, %s);", (title, artist))
+        cur.execute(f"INSERT INTO songs (title, artist) VALUES ({title}, {artist});")
         conn.commit()
         return True
     return False
 
 def song_exists(title, artist):
     cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) FROM songs (WHERE title = %s AND artist = %s);", (title, artist))
+    cur.execute(f"SELECT COUNT(*) FROM songs WHERE title = '{title}' AND artist = '{artist}';", (title, artist))
     return bool(cur.fetchone()[0])  # Either True or False
 
 class AllSongsResource(Resource):
